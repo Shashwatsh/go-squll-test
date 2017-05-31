@@ -6,6 +6,7 @@ import (
 	"os/exec"
 	"strconv"
 	"fmt"
+	"time"
 )
 
 type Squll struct {
@@ -63,6 +64,7 @@ func main() {
 		memory := strconv.FormatFloat(float64(app.Mem), 'f', -1, 32)
 		cpu := strconv.FormatFloat(float64(app.CPU), 'f', -1, 32)
 		cmd := exec.Command("/bin/rkt", "run", "--memory=" + string(memory) + "M", "--cpu=" + string(cpu), "--insecure-options=image", string(app.img))
+		time.Sleep(2000)
 		stdout, err := cmd.Output()
 
 		if err != nil {
